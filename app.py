@@ -38,7 +38,39 @@ if 'predictions' not in st.session_state:
 st.sidebar.header("Model Parameters")
 penalty = st.sidebar.selectbox("Penalty", ["l2", "l1", "elasticnet", "none"], index=0)
 C = st.sidebar.slider("C (Inverse of regularization strength)", 0.01, 10.0, 1.0, 0.01)
-solver = st.sidebar.selectbox("Solver", ["lbfgs", "liblinear", "newton-cg", "sag", "saga"], index=0)
+
+solver_options = {
+    "Limited-memory BFGS (lbfgs)": "lbfgs",
+    "Linear by Coordinate Descent (liblinear)": "liblinear",
+    "Newton Conjugate Gradient (newton-cg)": "newton-cg",
+    "Stochastic Average Gradient (sag)": "sag",
+    "Stochastic Average Gradient with Averaging (saga)": "saga"
+}
+solver_display = st.sidebar.selectbox("Solver", list(solver_options.keys()), index=0)
+solver = solver_options[solver_display]
+
+# Solver compatibility checker
+solver_compatibility = {
+    "lbfgs": {"penalties": ["l2", "none"], "best_for": "Small/medium datasets", "multiclass": "Yes"},
+    "liblinear": {"penalties": ["l1", "l2"], "best_for": "Small datasets", "multiclass": "One-vs-rest"},
+    "newton-cg": {"penalties": ["l2", "none"], "best_for": "Medium datasets", "multiclass": "Yes"},
+    "sag": {"penalties": ["l2", "none"], "best_for": "Large datasets", "multiclass": "Yes"},
+    "saga": {"penalties": ["l1", "l2", "elasticnet", "none"], "best_for": "Large datasets, sparse & L1/L2", "multiclass": "Yes"}
+}
+
+# Display compatibility warning
+current_penalty = penalty if penalty != "none" else "none"
+if current_penalty not in solver_compatibility[solver]["penalties"]:
+    st.sidebar.error(f"⚠️ Incompatible! {solver_display.split('(')[0].strip()} doesn't support {current_penalty} penalty.")
+    st.sidebar.info(f"**{solver_display.split('(')[0].strip()}** supports: {', '.join(solver_compatibility[solver]['penalties'])}")
+else:
+    st.sidebar.success(f"✅ Compatible: {solver} with {current_penalty}")
+
+# Display solver information
+with st.sidebar.expander("ℹ️ Solver Information"):
+    st.write(f"**Best for:** {solver_compatibility[solver]['best_for']}")
+    st.write(f"**Regularization:** {', '.join(solver_compatibility[solver]['penalties'])}")
+    st.write(f"**Multiclass:** {solver_compatibility[solver]['multiclass']}")
 
 if penalty == "none":
     penalty = None
