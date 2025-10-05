@@ -1,0 +1,21 @@
+songID,artistname,songtitle,year,artistID,Top10,loudness,tempo,timesignature,key,duration
+1,Artist A,Song One,2000,1,0,-5.5,120,4,0,240
+2,Artist B,Song Two,2001,2,1,-4.2,130,4,1,220
+3,Artist A,Song Three,2002,1,0,-6.0,110,3,2,260
+4,Artist C,Song Four,2003,3,1,-3.8,140,4,3,200
+5,Artist B,Song Five,2004,2,0,-5.0,125,4,4,250
+6,Artist D,Song Six,2005,4,1,-4.5,135,4,5,230
+7,Artist A,Song Seven,2006,1,0,-6.2,115,3,6,270
+8,Artist C,Song Eight,2007,3,1,-3.5,145,4,7,210
+9,Artist E,Song Nine,2008,5,0,-5.8,120,4,8,240
+10,Artist B,Song Ten,2009,2,1,-4.0,130,4,9,220
+11,Artist F,Song Eleven,2010,6,0,-6.5,110,3,0,260
+12,Artist C,Song Twelve,2011,3,1,-3.2,140,4,1,200
+13,Artist A,Song Thirteen,2012,1,0,-5.3,125,4,2,250
+14,Artist G,Song Fourteen,2013,7,1,-4.8,135,4,3,230
+15,Artist B,Song Fifteen,2014,2,0,-6.1,115,3,4,270
+16,Artist H,Song Sixteen,2015,8,1,-3.9,145,4,5,210
+17,Artist A,Song Seventeen,2016,1,0,-5.6,120,4,6,240
+18,Artist I,Song Eighteen,2017,9,1,-4.3,130,4,7,220
+19,Artist C,Song Nineteen,2018,3,0,-6.3,110,3,8,260
+20,Artist J,Song Twenty,2019,10,1,-3.7,140,4,9,200
